@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "proto";
+option (gogoproto.stable_marshaler_all) = true;
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+message TestData  {
+    bytes  Hash            = 1;
+    uint32 ShardID         = 2;
+    uint64 Nonce           = 3;
+    repeated bytes Hashes  = 4;
+    string Message         = 5;
+}
+
+
