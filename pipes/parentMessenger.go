@@ -31,7 +31,7 @@ func (messenger *ParentMessenger) ReadLogLine() (*logger.LogLine, error) {
 	wrapper := &logger.LogLineWrapper{}
 	err = messenger.logLineMarshalizer.Unmarshal(wrapper, buffer)
 	if err != nil {
-		return nil, err
+		return nil, CreateErrUnmarshalLogLine(buffer, err)
 	}
 
 	logLine := messenger.recoverLogLine(wrapper)

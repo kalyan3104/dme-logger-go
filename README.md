@@ -1,5 +1,5 @@
-# dme-logger-go
-kalyan's logger subsystem written in go
+# kalyan-logger-go
+Kalyan's logger subsystem written in go
 
 ## CLI options
 
