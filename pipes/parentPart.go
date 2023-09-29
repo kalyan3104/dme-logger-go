@@ -91,7 +91,10 @@ func (part *parentPart) OnProfileChanged() {
 
 func (part *parentPart) forwardProfile() {
 	profile := logger.GetCurrentProfile()
-	part.messenger.SendProfile(profile)
+	err := part.messenger.SendProfile(profile)
+	if err != nil {
+		part.logLinesSink.Debug("parentPart.forwardProfile()", "err", err)
+	}
 }
 
 func (part *parentPart) continuouslyRead(childStdout io.Reader, childStderr io.Reader) {
@@ -108,7 +111,7 @@ func (part *parentPart) continuouslyReadLogLines() {
 
 		logLine, err := part.messenger.ReadLogLine()
 		if err != nil {
-			part.logLinesSink.Error("parentPart.continuouslyReadLogLines()", "err", err)
+			part.logLinesSink.Debug("parentPart.continuouslyReadLogLines()", "err", err)
 			break
 		}
 
